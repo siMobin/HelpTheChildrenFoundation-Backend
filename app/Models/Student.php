@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
@@ -24,7 +25,6 @@ class Student extends Model
         'father_occupation',
         'mother_occupation',
         'family_members',
-        'mobile_number',
         'other_guardian',
         'permanent_address',
         'present_address',
@@ -45,5 +45,10 @@ class Student extends Model
         //     $this->photo_path,
         //     now()->addMinutes(60)
         // );
+    }
+
+    public function phoneNumbers(): HasMany
+    {
+        return $this->hasMany(StudentPhoneNumber::class);
     }
 }

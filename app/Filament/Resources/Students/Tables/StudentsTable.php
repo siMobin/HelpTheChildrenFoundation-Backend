@@ -63,7 +63,11 @@ class StudentsTable
                 TextColumn::make('family_members')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('mobile_number')
+                TextColumn::make('phoneNumbers.phone_number')
+                    ->label('Phone Numbers')
+                    ->listWithLineBreaks()
+                    ->limitList(2)
+                    ->expandableLimitedList()
                     ->searchable()
                     ->copyable(),
                 TextColumn::make('other_guardian')

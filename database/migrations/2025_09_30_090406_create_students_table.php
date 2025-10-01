@@ -29,7 +29,6 @@ return new class extends Migration
       $table->string('mother_name');
       $table->string('mother_occupation')->nullable();
       $table->integer('family_members')->default(0);
-      $table->string('mobile_number')->nullable();
       $table->string('other_guardian')->nullable();
       $table->text('present_address');
       $table->text('permanent_address')->nullable();

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Students\Schemas;
 
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
@@ -32,7 +33,8 @@ class StudentForm
                     ->numeric(),
                 TextInput::make('weight'),
                 TextInput::make('height'),
-                DatePicker::make('birth_date'),
+                DatePicker::make('birth_date')
+                    ->required(),
                 TextInput::make('father_name')
                     ->required(),
                 TextInput::make('father_occupation'),
@@ -43,7 +45,19 @@ class StudentForm
                     ->required()
                     ->numeric()
                     ->default(0),
-                TextInput::make('mobile_number'),
+                Repeater::make('phoneNumbers')
+                    ->relationship()
+                    ->schema([
+                        TextInput::make('phone_number')
+                            ->label('Phone Number')
+                            ->tel()
+                            ->columns(1)
+                            ->required(),
+                    ])
+                    ->defaultItems(1)
+                    ->addActionLabel('Add another phone number')
+                // ->columnSpanFull()
+                ,
                 TextInput::make('other_guardian'),
                 Textarea::make('present_address')
                     ->required()
