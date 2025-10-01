@@ -31,10 +31,12 @@ class StudentForm
                 TextInput::make('class'),
                 TextInput::make('roll')
                     ->numeric(),
+                TextInput::make('campus'),
                 TextInput::make('weight'),
                 TextInput::make('height'),
                 DatePicker::make('birth_date')
                     ->required(),
+                TextInput::make('blood_group'),
                 TextInput::make('father_name')
                     ->required(),
                 TextInput::make('father_occupation'),

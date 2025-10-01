@@ -28,6 +28,8 @@ class Student extends Model
         'other_guardian',
         'permanent_address',
         'present_address',
+        'campus',
+        'blood_group',
     ];
 
     // Automatically include this in API JSON

@@ -40,6 +40,8 @@ class StudentsTable
                 TextColumn::make('roll')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('campus')
+                    ->sortable(),
                 TextColumn::make('weight')
                     ->searchable(),
                 TextColumn::make('height')
@@ -52,6 +54,7 @@ class StudentsTable
                         $date = \Carbon\Carbon::parse($state);
                         return $date->format('m/d/Y') . ' (' . $date->age . ' Years)';
                     }),
+                TextColumn::make('blood_group'),
                 TextColumn::make('father_name')
                     ->searchable(),
                 TextColumn::make('father_occupation')
@@ -66,7 +69,7 @@ class StudentsTable
                 TextColumn::make('phoneNumbers.phone_number')
                     ->label('Phone Numbers')
                     ->listWithLineBreaks()
-                    ->limitList(2)
+                    ->limitList(1)
                     ->expandableLimitedList()
                     ->searchable()
                     ->copyable(),

@@ -17,6 +17,7 @@ class StudentController extends Controller
             'gender',
             'class',
             'roll',
+            'campus',
         )
             ->where('sponsor_no', null)
             ->get();
