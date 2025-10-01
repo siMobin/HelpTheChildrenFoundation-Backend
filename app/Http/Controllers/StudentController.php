@@ -9,7 +9,17 @@ class StudentController extends Controller
 {
     public function getAllStudents()
     {
-        $students = Student::all();
+        // select selective columns
+        $students = Student::select(
+            'id',
+            'photo_path',
+            'name',
+            'gender',
+            'class',
+            'roll',
+        )
+            ->where('sponsor_no', null)
+            ->get();
         return \response()->json($students);
     }
 }

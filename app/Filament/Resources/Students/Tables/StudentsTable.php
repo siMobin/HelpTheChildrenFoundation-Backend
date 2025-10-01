@@ -16,19 +16,26 @@ class StudentsTable
         return $table
             ->columns([
                 TextColumn::make('sponsor_no')
+                    ->copyable()
+                    ->sortable()
                     ->searchable(),
                 ImageColumn::make('photo_path')
-                ->disk('public')
+                    ->disk('public')
                     ->searchable(),
                 TextColumn::make('student_id')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('dropped_out')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('gender')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('class')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('roll')
                     ->numeric()
@@ -37,14 +44,19 @@ class StudentsTable
                     ->searchable(),
                 TextColumn::make('height')
                     ->searchable(),
-                TextColumn::make('age')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('birth_date')
+                    // ->numeric()
+                    ->sortable()
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) return '-';
+                        $date = \Carbon\Carbon::parse($state);
+                        return $date->format('m/d/Y') . ' (' . $date->age . ' Years)';
+                    }),
                 TextColumn::make('father_name')
                     ->searchable(),
-                TextColumn::make('mother_name')
-                    ->searchable(),
                 TextColumn::make('father_occupation')
+                    ->searchable(),
+                TextColumn::make('mother_name')
                     ->searchable(),
                 TextColumn::make('mother_occupation')
                     ->searchable(),
@@ -52,7 +64,8 @@ class StudentsTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('mobile_number')
-                    ->searchable(),
+                    ->searchable()
+                    ->copyable(),
                 TextColumn::make('other_guardian')
                     ->searchable(),
                 TextColumn::make('created_at')

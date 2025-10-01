@@ -18,7 +18,7 @@ class Student extends Model
         'roll',
         'weight',
         'height',
-        'age',
+        'birth_date',
         'father_name',
         'mother_name',
         'father_occupation',
